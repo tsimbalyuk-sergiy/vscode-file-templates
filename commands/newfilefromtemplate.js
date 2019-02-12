@@ -97,17 +97,15 @@ function constructTemplatesOptions(templatesInfo) {
 }
 
 function createNewFile(info) {
-  let currentPath = info.path;
+  let currentPath = info ? info._fsPath : undefined;
   if (!currentPath) {
     const editor = vscode.window.activeTextEditor;
     if (editor) {
       currentPath = editor.document.fileName;
     }
-
     if (!currentPath) {
       currentPath = vscode.workspace.rootPath;
     }
-
     // TODO : create untitled file from template
     if (!currentPath) {
       return;
