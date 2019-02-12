@@ -39,6 +39,8 @@ function createFile(filepath, data = '', extension = '') {
       const isPartOfProject = filepath.includes('src/main');
       if (filenameWithExt.endsWith('java') && isPartOfProject) {
         const tempPkg = filepath.replace(new RegExp('.*' + 'main/java/'), '');
+        // eslint-disable-next-line max-len
+        // TODO: if file ends with .java or .groovy -- we need to clean package name from it (including trailing slash)
         const packageName = tempPkg.replace(/\//g, '.');
         data = data.replace(PACKAGE_TOKEN, packageName+';');
       } else if (filenameWithExt.endsWith('java') && !isPartOfProject) {
@@ -51,6 +53,8 @@ function createFile(filepath, data = '', extension = '') {
       }
       if (filenameWithExt.endsWith('groovy') && isPartOfProject) {
         const tempPkg = filepath.replace(new RegExp('.*' + 'main/groovy/'), '');
+        // eslint-disable-next-line max-len
+        // TODO: if file ends with .java or .groovy -- we need to clean package name from it (including trailing slash)
         const packageName = tempPkg.replace(/\//g, '.');
         data = data.replace(PACKAGE_TOKEN, packageName);
       } else if (filenameWithExt.endsWith('groovy') && !isPartOfProject) {
